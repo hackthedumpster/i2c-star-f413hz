@@ -20,7 +20,7 @@
 PREFIX		?= arm-none-eabi
 #PREFIX		?= arm-elf
 
-TARGETS := stm32/f1 stm32/f4
+TARGETS := stm32/f7
 #TARGETS		:= stm32/f0 stm32/f1 stm32/f2 stm32/f3 stm32/f4 stm32/l1
 #TARGETS		+= lpc13xx lpc17xx #lpc43xx
 #TARGETS		+= lm3s lm4f
@@ -67,10 +67,8 @@ libopencm3:
 
 #EXAMPLE_DIRS:=$(sort $(dir $(wildcard $(addsuffix /*/*/Makefile,$(addprefix examples/,$(TARGETS))))))
 EXAMPLE_DIRS := \
-	src/bootloader \
-	src/i2c-explorer \
-	src/i2c-stm32f1-usb \
-	src/i2c-stm32f4-usb
+    src/i2c-stm32f7-usb
+
 $(EXAMPLE_DIRS): libopencm3
 	@printf "  BUILD   $@\n";
 	$(Q)$(MAKE) --directory=$@ OPENCM3_DIR=$(OPENCM3_DIR) $(EXAMPLE_RULES)

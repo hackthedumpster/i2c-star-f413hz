@@ -138,7 +138,7 @@ specific memorymap.h header before including this header file.*/
 #define I2C_CR1_START			(1 << 8)
 
 /* NOSTRETCH: Clock stretching disable (slave mode) */
-#define I2C_CR1_NOSTRETCH		(1 << 7)
+// #define I2C_CR1_NOSTRETCH		(1 << 7)
 
 /* ENGC: General call enable */
 #define I2C_CR1_ENGC			(1 << 6)
@@ -375,37 +375,38 @@ enum i2c_cr2_freq_values  {
 
 /**
  * I2C speed modes.
- */
+
 enum i2c_speeds {
 	i2c_speed_sm_100k,
 	i2c_speed_fm_400k,
 	i2c_speed_fmp_1m,
 	i2c_speed_unknown
 };
-
+ */
 BEGIN_DECLS
 
-void i2c_reset(uint32_t i2c);
-void i2c_peripheral_enable(uint32_t i2c);
-void i2c_peripheral_disable(uint32_t i2c);
-void i2c_send_start(uint32_t i2c);
-void i2c_send_stop(uint32_t i2c);
-void i2c_clear_stop(uint32_t i2c);
-void i2c_set_own_7bit_slave_address(uint32_t i2c, uint8_t slave);
-void i2c_set_own_10bit_slave_address(uint32_t i2c, uint16_t slave);
+//void i2c_reset(uint32_t i2c);
+//void i2c_peripheral_enable(uint32_t i2c);
+//void i2c_peripheral_disable(uint32_t i2c);
+//void i2c_send_start(uint32_t i2c);
+//void i2c_send_stop(uint32_t i2c);
+//void i2c_clear_stop(uint32_t i2c);
+//void i2c_set_own_7bit_slave_address(uint32_t i2c, uint8_t slave);
+//void i2c_set_own_10bit_slave_address(uint32_t i2c, uint16_t slave);
+
 void i2c_set_own_7bit_slave_address_two(uint32_t i2c, uint8_t slave);
 void i2c_enable_dual_addressing_mode(uint32_t i2c);
 void i2c_disable_dual_addressing_mode(uint32_t i2c);
 void i2c_set_clock_frequency(uint32_t i2c, uint8_t freq);
-void i2c_send_data(uint32_t i2c, uint8_t data);
+//void i2c_send_data(uint32_t i2c, uint8_t data);
 void i2c_set_fast_mode(uint32_t i2c);
 void i2c_set_standard_mode(uint32_t i2c);
 void i2c_set_ccr(uint32_t i2c, uint16_t freq);
 void i2c_set_trise(uint32_t i2c, uint16_t trise);
 void i2c_send_7bit_address(uint32_t i2c, uint8_t slave, uint8_t readwrite);
-uint8_t i2c_get_data(uint32_t i2c);
-void i2c_enable_interrupt(uint32_t i2c, uint32_t interrupt);
-void i2c_disable_interrupt(uint32_t i2c, uint32_t interrupt);
+//uint8_t i2c_get_data(uint32_t i2c);
+//void i2c_enable_interrupt(uint32_t i2c, uint32_t interrupt);
+//void i2c_disable_interrupt(uint32_t i2c, uint32_t interrupt);
 void i2c_enable_ack(uint32_t i2c);
 void i2c_disable_ack(uint32_t i2c);
 void i2c_nack_next(uint32_t i2c);
@@ -415,8 +416,8 @@ void i2c_enable_dma(uint32_t i2c);
 void i2c_disable_dma(uint32_t i2c);
 void i2c_set_dma_last_transfer(uint32_t i2c);
 void i2c_clear_dma_last_transfer(uint32_t i2c);
-void i2c_transfer7(uint32_t i2c, uint8_t addr, const uint8_t *w, size_t wn, uint8_t *r, size_t rn);
-void i2c_set_speed(uint32_t i2c, enum i2c_speeds speed, uint32_t clock_megahz);
+//void i2c_transfer7(uint32_t i2c, uint8_t addr, const uint8_t *w, size_t wn, uint8_t *r, size_t rn);
+//void i2c_set_speed(uint32_t i2c, enum i2c_speeds speed, uint32_t clock_megahz);
 
 END_DECLS
 

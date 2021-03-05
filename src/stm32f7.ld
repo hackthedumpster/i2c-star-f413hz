@@ -1,17 +1,8 @@
-/** @defgroup i2c_defines I2C Defines
- *
- * @brief <b>Defined Constants and Types for the STM32F7xx I2C</b>
- *
- * @ingroup STM32F7xx_defines
- *
- * @version 1.0.0
- *
- * @date 04 April 2019
- *
- * LGPL License Terms @ref lgpl_license
- */
 /*
  * This file is part of the libopencm3 project.
+ *
+ * Copyright (C) 2009 Uwe Hermann <uwe@hermann-uwe.de>
+ * Copyright (C) 2011 Stephen Caudle <scaudle@doceme.com>
  *
  * This library is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,10 +18,15 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBOPENCM3_I2C_H
-#define LIBOPENCM3_I2C_H
+/* Linker script for ST STM32F4DISCOVERY (STM32F407VG, 1024K flash, 128K RAM). */
 
-#include <libopencm3/stm32/common/i2c_common_v2.h>
-#include <libopencm3/stm32/common/i2c_common_v1.h>
-#endif
+/* Define memory regions. */
+MEMORY
+{
+	rom (rx) : ORIGIN = 0x08000000, LENGTH = 2048K
+	ram (rwx) : ORIGIN = 0x20000000, LENGTH = 512K
+}
+
+/* Include the common ld script. */
+INCLUDE cortex-m-generic.ld
 

@@ -22,7 +22,7 @@ uint32_t rcc_apb2_frequency = 16000000;
 // frequency in MHz.
 const struct rcc_clock_scale rcc_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 216MHz */
-		.plln = 432,
+		.plln = 216,
 		.pllp = 2,
 		.pllq = 9,
 		.hpre = RCC_CFGR_HPRE_NODIV,
@@ -436,7 +436,7 @@ void rcc_clock_setup_hse(const struct rcc_clock_scale *clock, uint32_t hse_mhz)
 
 void rcc_clock_setup_hsi(const struct rcc_clock_scale *clock)
 {
-	uint8_t pllm = 16;
+	uint8_t pllm = 8;
 
 	/* Enable internal high-speed oscillator. */
 	rcc_osc_on(RCC_HSI);

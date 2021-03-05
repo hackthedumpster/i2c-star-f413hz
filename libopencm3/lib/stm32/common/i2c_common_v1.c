@@ -48,7 +48,7 @@ The I2C peripheral and all its associated configuration registers are placed in
 the reset condition. The reset is effected via the RCC peripheral reset system.
 
 @param[in] i2c Unsigned int32. I2C peripheral identifier @ref i2c_reg_base.
-*/
+
 
 void i2c_reset(uint32_t i2c)
 {
@@ -75,18 +75,18 @@ void i2c_reset(uint32_t i2c)
 		break;
 	}
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Peripheral Enable.
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
-*/
+
 
 void i2c_peripheral_enable(uint32_t i2c)
 {
 	I2C_CR1(i2c) |= I2C_CR1_PE;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Peripheral Disable.
 
@@ -94,13 +94,13 @@ This must not be reset while in Master mode until a communication has finished.
 In Slave mode, the peripheral is disabled only after communication has ended.
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
-*/
+
 
 void i2c_peripheral_disable(uint32_t i2c)
 {
 	I2C_CR1(i2c) &= ~I2C_CR1_PE;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Send Start Condition.
 
@@ -109,13 +109,13 @@ current transmission. If in Slave mode, this will initiate a start condition
 when the current bus activity is completed.
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
-*/
+
 
 void i2c_send_start(uint32_t i2c)
 {
 	I2C_CR1(i2c) |= I2C_CR1_START;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Send Stop Condition.
 
@@ -123,25 +123,25 @@ After the current byte transfer this will initiate a stop condition if in Master
 mode, or simply release the bus if in Slave mode.
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
-*/
+
 
 void i2c_send_stop(uint32_t i2c)
 {
 	I2C_CR1(i2c) |= I2C_CR1_STOP;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Clear Stop Flag.
 
 Clear the "Send Stop" flag in the I2C config register
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
-*/
+
 void i2c_clear_stop(uint32_t i2c)
 {
 	I2C_CR1(i2c) &= ~I2C_CR1_STOP;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Set the 7 bit Slave Address for the Peripheral.
 
@@ -149,16 +149,16 @@ This sets an address for Slave mode operation, in 7 bit form.
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
 @param[in] slave Unsigned int8. Slave address 0...127.
-*/
+
 
 void i2c_set_own_7bit_slave_address(uint32_t i2c, uint8_t slave)
 {
 	uint16_t val = (uint16_t)(slave << 1);
-	/* Datasheet: always keep 1 by software. */
+	/* Datasheet: always keep 1 by software.
 	val |= (1 << 14);
 	I2C_OAR1(i2c) = val;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Set the 10 bit Slave Address for the Peripheral.
 
@@ -168,13 +168,13 @@ This sets an address for Slave mode operation, in 10 bit form.
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
 @param[in] slave Unsigned int16. Slave address 0...1023.
-*/
+
 
 void i2c_set_own_10bit_slave_address(uint32_t i2c, uint16_t slave)
 {
 	I2C_OAR1(i2c) = (uint16_t)(I2C_OAR1_ADDMODE | slave);
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Set the secondary 7 bit Slave Address for the Peripheral.
 
@@ -243,13 +243,13 @@ void i2c_set_clock_frequency(uint32_t i2c, uint8_t freq)
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
 @param[in] data Unsigned int8. Byte to send.
-*/
+
 
 void i2c_send_data(uint32_t i2c, uint8_t data)
 {
 	I2C_DR(i2c) = data;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Set Fast Mode.
 
@@ -337,34 +337,34 @@ void i2c_send_7bit_address(uint32_t i2c, uint8_t slave, uint8_t readwrite)
 /** @brief I2C Get Data.
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
-*/
+
 uint8_t i2c_get_data(uint32_t i2c)
 {
 	return I2C_DR(i2c) & 0xff;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Enable Interrupt
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
 @param[in] interrupt Unsigned int32. Interrupt to enable.
-*/
+
 void i2c_enable_interrupt(uint32_t i2c, uint32_t interrupt)
 {
 	I2C_CR2(i2c) |= interrupt;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Disable Interrupt
 
 @param[in] i2c Unsigned int32. I2C register base address @ref i2c_reg_base.
 @param[in] interrupt Unsigned int32. Interrupt to disable.
-*/
+
 void i2c_disable_interrupt(uint32_t i2c, uint32_t interrupt)
 {
 	I2C_CR2(i2c) &= ~interrupt;
 }
-
+*/
 /*---------------------------------------------------------------------------*/
 /** @brief I2C Enable ACK
 
@@ -531,7 +531,7 @@ static void i2c_read7_v1(uint32_t i2c, int addr, uint8_t *res, size_t n)
  * @param wn length of w
  * @param r destination buffer to read into
  * @param rn number of bytes to read (r should be at least this long)
- */
+
 void i2c_transfer7(uint32_t i2c, uint8_t addr, const uint8_t *w, size_t wn, uint8_t *r, size_t rn) {
 	if (wn) {
 		i2c_write7_v1(i2c, addr, w, wn);
@@ -542,13 +542,13 @@ void i2c_transfer7(uint32_t i2c, uint8_t addr, const uint8_t *w, size_t wn, uint
 		i2c_send_stop(i2c);
 	}
 }
-
+ */
 /**
  * Set the i2c communication speed.
  * @param i2c peripheral, eg I2C1
  * @param speed one of the listed speed modes @ref i2c_speeds
  * @param clock_megahz i2c peripheral clock speed in MHz. Usually, rcc_apb1_frequency / 1e6
- */
+
 void i2c_set_speed(uint32_t i2c, enum i2c_speeds speed, uint32_t clock_megahz)
 {
 	i2c_set_clock_frequency(i2c, clock_megahz);
@@ -559,16 +559,16 @@ void i2c_set_speed(uint32_t i2c, enum i2c_speeds speed, uint32_t clock_megahz)
 		i2c_set_trise(i2c, clock_megahz + 1);
 		break;
 	default:
-		/* fall back to standard mode */
+		/* fall back to standard mode
 	case i2c_speed_sm_100k:
 		i2c_set_standard_mode(i2c);
-		/* x Mhz / (100kHz * 2) */
+		/* x Mhz / (100kHz * 2)
 		i2c_set_ccr(i2c, clock_megahz * 5);
-		/* Sm mode, (100kHz) freqMhz + 1 */
+		/* Sm mode, (100kHz) freqMhz + 1
 		i2c_set_trise(i2c, clock_megahz + 1);
 		break;
 	}
 }
-
+*/
 
 /**@}*/

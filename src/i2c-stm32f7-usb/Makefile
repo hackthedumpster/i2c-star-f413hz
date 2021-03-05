@@ -1,5 +1,5 @@
 ##
-## This file is part of i2c-star
+## This file is part of the i2c-star project
 ##
 ## Copyright (C) 2009 Uwe Hermann <uwe@hermann-uwe.de>
 ##
@@ -17,10 +17,10 @@
 ## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-BINARY = i2c-explorer
+BINARY = i2c-stm32f7-usb
 
 DEFS += -DF_CPU=216000000
-OBJS += console.o console_cdcacm.o console_cmd_gpio.o
+DEFS += -DF_APB1=54000000
 
-LDSCRIPT = ../stm32f4-discovery.ld
+LDSCRIPT = ../stm32f7.ld
 include ../../mk/libopencm3.stm32f7xx.mk
